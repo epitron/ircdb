@@ -33,8 +33,12 @@ $(document).on "ready", ->
       when 'End'
         follow(".last_page")
 
-      # when 'PageDown'
-      # when 'PageUp'
+      when 'PageDown'
+        follow(".fast_next_page")
+        
+      when 'PageUp'
+        follow(".fast_prev_page")
+
       # when 'Enter'
       # when 'U+001B'
         # ESC
