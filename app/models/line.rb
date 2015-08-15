@@ -29,9 +29,10 @@ class Line < ActiveRecord::Base
   end
 
   def formatted_message
-    message.
+    m =  ERB::Util.html_escape(message)
+    m.
       # link to urls
-      gsub(%r{https?://[^\s)>]+}) { |url| "<a href='#{url}' rel='noreferrer' target='_blank'>#{url}</a>" }.
+      gsub(/https?:\/\/\S+[^>\)\]\s]/) { |url| "<a href='#{url}' rel='noreferrer' target='_blank'>#{url}</a>" }.
       # bold chars
       gsub("\b").with_index { |char, count| count % 2 == 0 ? "<b>" : "</b>" }.
       html_safe

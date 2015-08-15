@@ -2,55 +2,42 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$(document).on 'page:fetch', ->
-  $('#content').fadeOut 'slow'
+# $(document).on 'page:fetch', ->
+#   $('.lines').fadeOut()
+#   $('.lines').animate(opacity: 0)
 
-$(document).on 'page:restore', ->
-  $('#content').fadeIn 'slow'
+# $(document).on 'page:restore', ->
+#   $('.lines').fadeIn()
 
-$(document).on "ready page:load", ->
+$(document).on "ready", ->
   # search_field = $('#search-field')
   # search_field.focus()
 
-  $('body').keydown ->
-    console.log "Key: #{event.keyIdentifier}"
-    # console.log e.keyCode
-    # if e.keyCode == 27
-    #   clear_search()
+  follow = (classname)->
+    # console.log "followed #{classname}"
+    event.preventDefault()
+    elem = $(classname)[0]
+    elem.click() if elem 
+
+  $(document).on 'keydown', ->
     switch event.keyIdentifier
       when 'Right'
-        console.log 'Next'
-        event.preventDefault()
-        $(".next_page")[0].click()
+        follow(".next_page")
 
       when 'Left'
-        console.log 'Prev'
-        event.preventDefault()
-        $(".prev_page")[0].click()
+        follow(".prev_page")
 
       when 'Home'
-        console.log 'Home'
-        event.preventDefault()
-        $(".first_page")[0].click()
+        follow(".first_page")
 
       when 'End'
-        console.log 'End'
-        event.preventDefault()
-        $(".last_page")[0].click()
+        follow(".last_page")
 
       # when 'PageDown'
       # when 'PageUp'
       # when 'Enter'
-
-      when 'U+001B'
+      # when 'U+001B'
         # ESC
-        event.preventDefault()
-        console.log 'esc'
-        # clear_search()
-      else
-        return
-      # Quit when this doesn't handle the key event.
-
 
     # if !search_field.is(':focus')
     #   search_field.focus()

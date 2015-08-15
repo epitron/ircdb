@@ -1,5 +1,6 @@
-%span= link_to "Back to Buffers", buffers_path
-%span= @buffer.name
+%span= link_to "<< Buffers", buffers_path
+%span
+  %b= @buffer.name
 
 %p
   = link_to "|<< First", "?page=0", class: "first_page"
@@ -12,8 +13,7 @@
     %h4 Nothing here!
 
 - else
-
-  %h3= @lines.first.nicedate
-  %table.lines
-    = render @lines
-
+  - for date, lines in @lines.group_by(&:nicedate)
+    %h3= date
+    %table.lines
+      = render lines

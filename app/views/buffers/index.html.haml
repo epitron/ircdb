@@ -1,5 +1,6 @@
-%h1 Channels
-= render @channels
+- cache do
+  %h1 Channels
+  = render @channels.sort_by { |chan| chan.lines.last.time }.reverse
 
-%h1 Queries
-= render @queries
+  %h1 Queries
+  = render @queries.sort_by { |chan| chan.lines.last.time }.reverse
