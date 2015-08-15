@@ -1,0 +1,53 @@
+// Place all the styles related to the Buffers controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// a.color0
+//   color: #BF249E
+// a.color1
+//   color: #611A9B
+// a.color2
+//   color: #7D27BF
+// a.color3
+//   color: #604ACD
+// a.color4
+//   color: #5871A5
+// a.color5
+//   color: #0A5FB9
+// a.color6
+//   color: #3D9EFF
+
+
+$nick-colors: #002b36, #586e75, #b58900, #cb4b16, #dc322f, #d33682, #6c71c4, #268bd2, #2aa198, #859900
+
+
+table.lines
+  font-family: monospace
+
+  td
+    vertical-align: top
+
+  .time 
+    text-align: right
+    padding-right: 5px
+
+  .nick a
+    text-decoration: none
+
+  $num: 0
+  @each $color in $nick-colors
+    $num: $num + 1
+    a.color#{$num}
+      color: $color
+
+  .nick
+    text-align: right
+    padding-right: 5px
+
+  .message
+    border-left: 2px solid
+    padding-left: 7px
+
+  pre
+    white-space: pre-wrap
+    margin: auto
