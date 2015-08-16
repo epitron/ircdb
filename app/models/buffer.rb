@@ -23,7 +23,7 @@ class Buffer < ActiveRecord::Base
     end
   end
 
-  def page(n, page_size: 35)
+  def page(n, since: nil, page_size: 35)
     if n < 0
       offset = -(n+1) * page_size
     else
@@ -31,6 +31,11 @@ class Buffer < ActiveRecord::Base
     end
 
     result = messages.includes(:sender).limit(page_size).offset(offset)
+
+    if since
+      timestamp = DateTime.parse(since).to_i
+      result = result.where("time > ?", timestamp)
+    end
 
     if n < 0
       result = result.order("messageid DESC").reverse

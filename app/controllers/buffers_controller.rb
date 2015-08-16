@@ -15,7 +15,7 @@ class BuffersController < ApplicationController
 
     # offset = @page * PAGE_SIZE
 
-    @lines = @buffer.page(@page)
+    @lines = @buffer.page(@page, since: params[:since])
   end
   
 end
