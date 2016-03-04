@@ -1,9 +1,17 @@
 %span= link_to "<< Buffers", buffers_path
+
 %span
   %b= @buffer.name
+
 %span
   Date:
-  %input{type: "text", id: "datepicker", value: params[:since]}
+  %input{type: "text", id: "datepicker", value: params[:since] || @lines.first.date}
+
+%div{style: "display: inline-block;"}
+  %form{method: "GET"}
+    %input{name: "query", value: @query}
+    %input{type: "submit", value: "search"}
+
 
 %p
   = link_to "|<< First", "?page=0", class: "first_page"
@@ -11,9 +19,16 @@
   = link_to_if @nextpage, "Forward >>", modified_params(page: @nextpage), class: "next_page"
   = link_to "Last >>|", "?page=-1", class: "last_page"
 
+
 .hidden
   = link_to "fast next >>>>>", modified_params(page: @page + 10), class: "fast_next_page"
   = link_to "<<<<<<fast prev", modified_params(page: @page - 10), class: "fast_prev_page"
+
+
+- if @query.present?
+  %h3
+    Search:
+    %mark= @query
 
 
 .content

@@ -6,7 +6,7 @@ gem 'rails', '4.2.3'
 gem 'sqlite3'
 # Use SCSS for stylesheets
 
-gem 'haml'
+gem 'hamlit'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
@@ -24,6 +24,7 @@ gem 'turbolinks'
 # gem 'bcrypt', '~> 3.1.7'
 
 # gem 'unicorn'
+gem 'puma'
 
 # gem 'capistrano-rails', group: :development
 

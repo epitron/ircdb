@@ -15,7 +15,16 @@ class BuffersController < ApplicationController
 
     # offset = @page * PAGE_SIZE
 
-    @lines = @buffer.page(@page, since: params[:since])
+    if params[:query].present?
+      @query = params[:query]
+      @page_size = 5
+      @lines = @buffer.messages.search(@query)
+    else
+      @page_size = 35
+      @lines = @buffer.messages
+    end
+
+    @lines = @lines.page(@page, since: params[:since], page_size: @page_size)
   end
   
 end

@@ -4,4 +4,4 @@
   %td.message
     %pre
       :preserve
-        #{line.formatted_message}
+        #{highlight(line.formatted_message,@query)}
